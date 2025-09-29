@@ -26,11 +26,11 @@ public class ProductController {
     @PostMapping(path = CREATE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> create(@RequestBody ProductRequest product) {
         boolean result = productService.createProduct(product);
-        return new ResponseEntity<>(result, HttpStatusCode.valueOf(200));
+        return new ResponseEntity<>(result, (result == true) ? HttpStatusCode.valueOf(200) : HttpStatusCode.valueOf(201));
     }
     @GetMapping(path = GETBYNAME)
     public ResponseEntity<List<ProductResponse>> getByName(String name){
         List<ProductResponse> productResponseList = productService.getByName(name);
-        return new ResponseEntity<>(productResponseList, HttpStatusCode.valueOf(200));
+        return new ResponseEntity<>(productResponseList, (productResponseList != null) ? HttpStatusCode.valueOf(200) : HttpStatusCode.valueOf(201));
     }
 }

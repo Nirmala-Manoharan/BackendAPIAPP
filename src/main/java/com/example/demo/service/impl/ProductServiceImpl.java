@@ -35,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
         Product result = productRepository.save(product);
         return Objects.nonNull(result);
     }
+    
     @Override
     public List<ProductResponse> getByName(String name){
         List<Product> result = productRepository.findByName(name);
